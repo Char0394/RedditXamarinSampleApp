@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Newtonsoft.Json;
 using ReditXamarinApp.Models;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace ReditXamarinApp.ViewModels
@@ -15,6 +18,7 @@ namespace ReditXamarinApp.ViewModels
         public ICommand RefreshDataCommand { get; set; }
         public ICommand DismissAllPostsCommand { get; set; }
         public ICommand DismissPostCommand { get; set; }
+        public ICommand GetPostsSavedLocallyCommand { get; set; }
         public bool IsRefreshing { get; set; }
         public bool HasData { get; set; }
         string _nextPageId;
@@ -30,6 +34,8 @@ namespace ReditXamarinApp.ViewModels
                 HasData = false;
             });
             DismissPostCommand = new Command<PostItem>((param) => Posts.Remove(param));
+            GetPostsSavedLocallyCommand = new Command(async () => await GetPostsSavedlocally());
+            GetPostsSavedLocallyCommand.Execute(null);
             GetDataCommand.Execute(null);
         }
 
@@ -66,8 +72,27 @@ namespace ReditXamarinApp.ViewModels
                 }
 
                 HasData = (Posts != null && Posts.Count > 0);
+
+                if (HasData) SavePosts();
             }
             IsBusy = IsRefreshing=false;
+        }
+
+        //App state-preservation/restoration logic
+        async void SavePosts()
+        {
+            Preferences.Set(Config.LastPostsKey, await Task.Run(() => JsonConvert.SerializeObject(Posts)));
+        }
+
+        async Task GetPostsSavedlocally()
+        {
+            var myValue = Preferences.Get(Config.LastPostsKey, string.Empty);
+            if (!string.IsNullOrEmpty(myValue))
+            {
+                var result = await Task.Run(() => JsonConvert.DeserializeObject<List<PostItem>>(myValue));
+                if(result!=null)
+                    Posts = new ObservableCollection<PostItem>(result);
+            }
         }
     }
 }

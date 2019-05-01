@@ -11,6 +11,12 @@
                          HeightRequest="100"
                          Source = "{Binding Data.Preview, Converter={StaticResource UrlToImageConverter}}" />
                            
+                 <ActivityIndicator HorizontalOptions="CenterAndExpand"
+                                    IsRunning="true"
+                                    IsVisible="false"
+                                    Color="LightGray"
+                                    x:Name="loading"/>
+                
                  <Button TextColor="{StaticResource Secondary}" 
                          Text="Save Image" 
                          IsVisible= "{Binding Data.Preview, Converter={StaticResource HasImageToBoolConverter}, TargetNullValue=false, FallbackValue=false}"

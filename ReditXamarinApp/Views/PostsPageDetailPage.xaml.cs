@@ -15,8 +15,14 @@ namespace ReditXamarinApp.Views
 
         public async void Save_Handle_Clicked(object sender, EventArgs e)
         {
+            loading.IsVisible = true;
+            saveButton.IsVisible = !loading.IsVisible;
+
             var param = ((Button)sender).CommandParameter;
             var result=await DependencyService.Get<ISavePictureService>().SaveFromUrl($"{param}");
+            loading.IsVisible = false;
+            saveButton.IsVisible = !loading.IsVisible;
+
             if (result)
             {
                 await DisplayAlert("Yayyy", "Image saved succesfully", "Ok");

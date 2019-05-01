@@ -64,6 +64,7 @@
                                         <Image Aspect="AspectFit" 
                                                VerticalOptions="FillAndExpand"
                                                HeightRequest="60"
+                                               WidthRequest="60"
                                                Grid.Row="1"
                                                Grid.Column="0"
                                                Grid.ColumnSpan="2"
