@@ -1,4 +1,5 @@
 ﻿using System;
+using ReditXamarinApp.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +11,7 @@ namespace ReditXamarinApp
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new PostsPage());
         }
 
         protected override void OnStart()
