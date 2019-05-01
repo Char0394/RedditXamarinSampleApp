@@ -4,12 +4,10 @@
              x:Class="ReditXamarinApp.App">
    <Application.Resources>
       <ResourceDictionary>
-          <Color x:Key="primary">Black</Color>
-          <Color x:Key="primaryDark">Black</Color>
-          <Color x:Key="secondary">Black</Color>
+          <Color x:Key="Primary">Black</Color>
                 
          <Style TargetType="NavigationPage">
-            <Setter Property="BarBackgroundColor" Value="{DynamicResource primary}"/>
+            <Setter Property="BarBackgroundColor" Value="{DynamicResource Primary}"/>
             <Setter Property="BarTextColor" Value="White"/>
         </Style>  
     </ResourceDictionary>
