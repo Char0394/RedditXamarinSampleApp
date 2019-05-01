@@ -6,7 +6,7 @@ namespace ReditXamarinApp.Views
 {
     public partial class PostsPage : MasterDetailPage
     {
-        PostsPageDetailPage postsPage= new PostsPageDetailPage();
+        PostsPageDetailPage postsPage= new PostsPageDetailPage() { BindingContext=null};
         public PostsPage()
         {
             InitializeComponent();

@@ -10,7 +10,17 @@
                          HorizontalOptions="CenterAndExpand"
                          HeightRequest="100"
                          Source = "{Binding Data.Preview, Converter={StaticResource UrlToImageConverter}}" />
-                                        
+                           
+                 <Button TextColor="{StaticResource Secondary}" 
+                         Text="Save Image" 
+                         IsVisible= "{Binding Data.Preview, Converter={StaticResource HasImageToBoolConverter}, TargetNullValue=false, FallbackValue=false}"
+                         Clicked="Save_Handle_Clicked"
+                         CommandParameter="{Binding Data.Preview, Converter={StaticResource UrlToImageConverter}}"
+                         HorizontalOptions="CenterAndExpand"
+                         FontSize="14"
+                         x:Name="saveButton"
+                         BackgroundColor="Transparent"/>
+                  
                   <Label Text="{Binding Data.Title}" 
                        TextColor="Black"
                        FontSize="15"/>

@@ -15,6 +15,7 @@
             
         <converters:UrlToImageConverter x:Key="UrlToImageConverter"/>
         <converters:RelativeTimeConverter x:Key="RelativeTimeConverter"/>
+        <converters:HasImageToBoolConverter x:Key="HasImageToBoolConverter"/>
     </ResourceDictionary>
   </Application.Resources>
 </Application>
