@@ -1,18 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             x:Class="ReditXamarinApp.Views.PostsPage" >
+             x:Class="ReditXamarinApp.Views.PostsPage"  
+             xmlns:controls="clr-namespace:ReditXamarinApp.Controls">
     <MasterDetailPage.Master>
+          <NavigationPage Title="Reddit Posts"
+                          Icon="ic_menu.png" >
+            <x:Arguments>
             <ContentPage Icon="ic_menu.png" 
-                         Title="menu">
-                    <ListView >
-                        <ListView.ItemTemplate>
+                         BackgroundColor="{StaticResource Primary}"
+                         Title="Reddit Posts">
+               <StackLayout VerticalOptions="FillAndExpand">
+                <controls:ExtendedListView  IsPullToRefreshEnabled="true" 
+                             RefreshCommand="{Binding RefreshDataCommand}"
+                             HasUnevenRows="true" 
+                             BackgroundColor="Transparent"
+                             VerticalOptions="FillAndExpand"
+                             IsRefreshing="{Binding IsRefreshing}" 
+                             ItemsSource="{Binding Posts}" 
+                             ItemTapped="OpenPost_ItemTapped"
+                             LoadMoreCommand="{Binding LoadMoreCommand}">
+                        <controls:ExtendedListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
+                                    <Grid Padding="10"
+                                          VerticalOptions="FillAndExpand" 
+                                          HorizontalOptions="FillAndExpand">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="60" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                
+                                        <Button IsVisible="{Binding Data.NotReaded}" 
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                VerticalOptions="Center" 
+                                                WidthRequest="10"
+                                                HeightRequest="10" 
+                                                CornerRadius="5"
+                                                BackgroundColor="DodgerBlue"/>
+                                
+                                        <Label LineBreakMode="WordWrap"
+                                               Grid.Row="0"
+                                               Grid.Column="1"
+                                               Grid.ColumnSpan="3">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding Data.Author}" TextColor="White" FontSize="14" />
+                                                        <Span Text=" " TextColor="White" FontSize="14" />
+                                                        <Span Text="{Binding Data.Created_utc}" TextColor="Gray" FontSize="14" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                        </Label>
+                                
+                                        <Image Aspect="AspectFit" 
+                                               VerticalOptions="FillAndExpand"
+                                               HeightRequest="60"
+                                               Grid.Row="1"
+                                               Grid.Column="0"
+                                               Grid.ColumnSpan="2"
+                                               Source = "{Binding Data.Preview, Converter={StaticResource UrlToImageConverter}}" />
+                                        
+                                        <Label HorizontalOptions="Start" 
+                                               Text="{Binding Data.Title}" 
+                                               TextColor="White"
+                                               FontSize="10"
+                                               Grid.Row="1"
+                                               Grid.Column="2"/>
+                                
+                                         <Label HorizontalOptions="EndAndExpand" 
+                                                VerticalOptions="CenterAndExpand"
+                                               Text="&#12299;" 
+                                               TextColor="White"
+                                               FontSize="15"
+                                               Grid.Row="1"
+                                               Grid.Column="3"/>
+                                      
+                                        <Label LineBreakMode="WordWrap"
+                                               Grid.Row="2" 
+                                               Grid.Column="0"
+                                               Grid.ColumnSpan="3">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="&#10006;" TextColor="{StaticResource Secondary}" FontSize="14" />
+                                                        <Span Text=" " TextColor="White" FontSize="14" />
+                                                        <Span Text="Dismiss Post" TextColor="White" FontSize="14" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                        </Label>
+                                
+                                        <Label Grid.Row="2" 
+                                               Grid.Column="2"
+                                               HorizontalOptions="EndAndExpand"
+                                               Text="{Binding Data.Num_comments, StringFormat='{0} comments'}" 
+                                               TextColor="{StaticResource Secondary}"  
+                                               FontSize="14"/>
+                                    </Grid>
                                 </ViewCell>
                             </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-            </ContentPage>
+                        </controls:ExtendedListView.ItemTemplate>
+                        <controls:ExtendedListView.Footer>
+                               <ActivityIndicator HorizontalOptions="Center"
+                                              IsRunning="{Binding IsBusy}"
+                                              IsVisible="{Binding IsBusy}"
+                                              Color="White"/>
+                        </controls:ExtendedListView.Footer>
+                    </controls:ExtendedListView>
+                     <Button TextColor="{StaticResource Secondary}" 
+                             Text="Dismiss All"
+                             IsVisible="{Binding HasData}"
+                             HorizontalOptions="CenterAndExpand"
+                             FontSize="14"
+                             BackgroundColor="Transparent"/>
+                  </StackLayout>
+              </ContentPage>
+             </x:Arguments>
+        </NavigationPage>
     </MasterDetailPage.Master>
 </MasterDetailPage>

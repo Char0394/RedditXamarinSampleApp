@@ -28,13 +28,13 @@ namespace ReditXamarinApp.Models
     public class PostItemDetail
     {
         public bool Archived { get; set; }
-        public bool Clicked { get; set; }
         public string Author { get; set; }
         public string Name { get; set; }
         public double Created { get; set; }
         public string Title { get; set; }
         public double Created_utc { get; set; }
         public int Num_comments { get; set; }
+        public bool NotReaded { get; set; } = true;
         public Preview Preview { get; set; }
     }
 

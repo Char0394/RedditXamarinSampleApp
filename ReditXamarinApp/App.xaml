@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             x:Class="ReditXamarinApp.App">
+             x:Class="ReditXamarinApp.App" 
+             xmlns:converters="clr-namespace:ReditXamarinApp.Helpers">
    <Application.Resources>
       <ResourceDictionary>
-          <Color x:Key="Primary">Black</Color>
-                
+         <Color x:Key="Primary">Black</Color>
+         <Color x:Key="Secondary">Orange</Color>
+            
          <Style TargetType="NavigationPage">
             <Setter Property="BarBackgroundColor" Value="{DynamicResource Primary}"/>
             <Setter Property="BarTextColor" Value="White"/>
         </Style>  
+            
+        <converters:UrlToImageConverter x:Key="UrlToImageConverter"/>
     </ResourceDictionary>
   </Application.Resources>
 </Application>

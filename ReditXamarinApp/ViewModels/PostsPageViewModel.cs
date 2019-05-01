@@ -14,6 +14,7 @@ namespace ReditXamarinApp.ViewModels
         public ICommand GetDataCommand { get; set; }
         public ICommand RefreshDataCommand { get; set; }
         public bool IsRefreshing { get; set; }
+        public bool HasData { get; set; }
         string _nextPageId;
         string _actualPageId;
 
@@ -56,6 +57,8 @@ namespace ReditXamarinApp.ViewModels
                 {
                     Posts = new ObservableCollection<PostItem>(posts.Children);
                 }
+
+                HasData = (Posts != null && Posts.Count > 0);
             }
             IsBusy = IsRefreshing=false;
         }
