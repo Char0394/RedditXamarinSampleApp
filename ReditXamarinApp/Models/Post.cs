@@ -25,7 +25,7 @@ namespace ReditXamarinApp.Models
         public PostItemDetail Data { get; set; }
     }
 
-    public class PostItemDetail
+    public class PostItemDetail: INotifyPropertyChanged
     {
         public bool Archived { get; set; }
         public string Author { get; set; }
@@ -36,6 +36,8 @@ namespace ReditXamarinApp.Models
         public int Num_comments { get; set; }
         public bool NotReaded { get; set; } = true;
         public Preview Preview { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 
     public class Preview

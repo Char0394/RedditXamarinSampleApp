@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             x:Class="ReditXamarinApp.Views.PostsPageDetailPage">
+             x:Class="ReditXamarinApp.Views.PostsPageDetailPage"
+             Title="{Binding Data.Author}">
     <ContentPage.Content>
+        <ScrollView VerticalOptions="FillAndExpand">
+            <StackLayout Padding="20">
+                  <Image Aspect="AspectFit" 
+                         HorizontalOptions="CenterAndExpand"
+                         HeightRequest="100"
+                         Source = "{Binding Data.Preview, Converter={StaticResource UrlToImageConverter}}" />
+                                        
+                  <Label Text="{Binding Data.Title}" 
+                       TextColor="Black"
+                       FontSize="15"/>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

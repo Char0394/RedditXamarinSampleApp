@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using ReditXamarinApp.ViewModels;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace ReditXamarinApp.Views
 {
@@ -10,7 +7,6 @@ namespace ReditXamarinApp.Views
         public PostsPageDetailPage()
         {
             InitializeComponent();
-            this.BindingContext = new PostsPageDetailViewModel();
         }
     }
 }
