@@ -5,12 +5,14 @@ using Xamarin.Forms;
 
 namespace ReditXamarinApp.Views
 {
-    public partial class PostsPage : ContentPage
+    public partial class PostsPage : MasterDetailPage
     {
         public PostsPage()
         {
             InitializeComponent();
             this.BindingContext = new PostsPageViewModel();
+
+            Detail = new NavigationPage(new PostsPageDetailPage());
         }
     }
 }

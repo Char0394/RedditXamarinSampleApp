@@ -11,7 +11,7 @@ namespace ReditXamarinApp
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new PostsPage());
+            MainPage = new PostsPage();
         }
 
         protected override void OnStart()

@@ -134,4 +134,12 @@
       <Name>ReditXamarinApp</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu%403x.png" />
+    <BundleResource Include="Resources\ic_menu%402x.png" />
+    <BundleResource Include="Resources\ic_menu.png" />
+  </ItemGroup>
 </Project>

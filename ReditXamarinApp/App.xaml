@@ -2,6 +2,16 @@
 <Application xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="ReditXamarinApp.App">
-    <Application.Resources>
-    </Application.Resources>
+   <Application.Resources>
+      <ResourceDictionary>
+          <Color x:Key="primary">Black</Color>
+          <Color x:Key="primaryDark">Black</Color>
+          <Color x:Key="secondary">Black</Color>
+                
+         <Style TargetType="NavigationPage">
+            <Setter Property="BarBackgroundColor" Value="{DynamicResource primary}"/>
+            <Setter Property="BarTextColor" Value="White"/>
+        </Style>  
+    </ResourceDictionary>
+  </Application.Resources>
 </Application>
