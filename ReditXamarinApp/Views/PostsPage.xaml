@@ -55,7 +55,7 @@
                                                     <FormattedString>
                                                         <Span Text="{Binding Data.Author}" TextColor="White" FontSize="14" />
                                                         <Span Text=" " TextColor="White" FontSize="14" />
-                                                        <Span Text="{Binding Data.Created_utc}" TextColor="Gray" FontSize="14" />
+                                                        <Span Text="{Binding Data.Created_utc, Converter={StaticResource RelativeTimeConverter}}" TextColor="Gray" FontSize="14" />
                                                     </FormattedString>
                                                 </Label.FormattedText>
                                         </Label>

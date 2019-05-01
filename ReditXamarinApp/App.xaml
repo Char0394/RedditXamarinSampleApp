@@ -14,6 +14,7 @@
         </Style>  
             
         <converters:UrlToImageConverter x:Key="UrlToImageConverter"/>
+        <converters:RelativeTimeConverter x:Key="RelativeTimeConverter"/>
     </ResourceDictionary>
   </Application.Resources>
 </Application>
