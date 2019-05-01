@@ -13,6 +13,8 @@ namespace ReditXamarinApp.ViewModels
         public ICommand LoadMoreCommand { get; set; }
         public ICommand GetDataCommand { get; set; }
         public ICommand RefreshDataCommand { get; set; }
+        public ICommand DismissAllPostsCommand { get; set; }
+        public ICommand DismissPostCommand { get; set; }
         public bool IsRefreshing { get; set; }
         public bool HasData { get; set; }
         string _nextPageId;
@@ -23,10 +25,15 @@ namespace ReditXamarinApp.ViewModels
             LoadMoreCommand = new Command(async () => await LoadMoreDataAysnc());
             GetDataCommand = new Command(async () => await GetDataAsync());
             RefreshDataCommand = new Command(async () => await GetDataAsync(false, true));
-
+            DismissAllPostsCommand = new Command(()=> {
+                Posts?.Clear();
+                HasData = false;
+            });
+            DismissPostCommand = new Command<PostItem>((param) => Posts.Remove(param));
             GetDataCommand.Execute(null);
         }
 
+       
         async Task LoadMoreDataAysnc()
         {
             if (!string.IsNullOrEmpty(_nextPageId))

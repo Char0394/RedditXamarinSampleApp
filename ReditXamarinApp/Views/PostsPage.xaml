@@ -9,7 +9,8 @@
             <x:Arguments>
             <ContentPage Icon="ic_menu.png" 
                          BackgroundColor="{StaticResource Primary}"
-                         Title="Reddit Posts">
+                         Title="Reddit Posts"
+                         x:Name="mainPage">
                <StackLayout VerticalOptions="FillAndExpand">
                 <controls:ExtendedListView  IsPullToRefreshEnabled="true" 
                              RefreshCommand="{Binding RefreshDataCommand}"
@@ -94,6 +95,11 @@
                                                         <Span Text="Dismiss Post" TextColor="White" FontSize="14" />
                                                     </FormattedString>
                                                 </Label.FormattedText>
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer
+                                                                Command="{Binding Path=BindingContext.DismissPostCommand, Source={x:Reference mainPage}}"
+                                                                CommandParameter="{Binding .}"/>
+                                                  </Label.GestureRecognizers>
                                         </Label>
                                 
                                         <Label Grid.Row="2" 
@@ -115,6 +121,7 @@
                     </controls:ExtendedListView>
                      <Button TextColor="{StaticResource Secondary}" 
                              Text="Dismiss All"
+                             Command="{Binding DismissAllPostsCommand}"
                              IsVisible="{Binding HasData}"
                              HorizontalOptions="CenterAndExpand"
                              FontSize="14"
